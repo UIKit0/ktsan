@@ -1399,7 +1399,7 @@ static void run_timer_softirq(struct softirq_action *h)
 
 	hrtimer_run_pending();
 
-	if (time_after_eq(jiffies, base->timer_jiffies))
+	if (time_after_eq(jiffies, ACCESS_ONCE(base->timer_jiffies)))
 		__run_timers(base);
 }
 
